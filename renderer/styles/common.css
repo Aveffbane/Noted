@@ -1,0 +1,225 @@
+/* common.css — общие стили для всех окон приложения */
+
+/* Сброс браузерных стилей */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Переменные цветов — тёмная тема по умолчанию */
+:root {
+  --bg-primary: #1f1f1f;
+  --bg-secondary: #2a2a2a;
+  --bg-hover: #333333;
+  --bg-active: #3a3a3a;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --text-muted: #666666;
+  --accent: #f5c518;        /* Жёлтый акцент — как у стикеров */
+  --accent-hover: #f0b800;
+  --border: #3a3a3a;
+  --border-light: #444444;
+  --danger: #e05252;
+  --success: #52c252;
+  --radius: 8px;
+  --radius-sm: 4px;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Светлая тема */
+.theme-light {
+  --bg-primary: #f5f5f0;
+  --bg-secondary: #ebebeb;
+  --bg-hover: #e0e0e0;
+  --bg-active: #d5d5d5;
+  --text-primary: #1a1a1a;
+  --text-secondary: #555555;
+  --text-muted: #999999;
+  --accent: #d4a017;
+  --accent-hover: #c49010;
+  --border: #d0d0d0;
+  --border-light: #c0c0c0;
+  --shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.5;
+  overflow: hidden;           /* Без полосы прокрутки на body */
+  user-select: none;          /* Запрещаем выделение текста мышкой */
+}
+
+/* Разрешаем выделение текста только в полях ввода и редактируемых областях */
+input, textarea, [contenteditable="true"] {
+  user-select: text;
+  cursor: text;
+}
+
+/* Кастомная полоса прокрутки — тонкая и красивая */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-light);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-muted);
+}
+
+/* Заголовок окна (перетаскиваемая область) */
+.titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px 10px;
+  background: var(--bg-secondary);
+  border-bottom: 1px solid var(--border);
+  -webkit-app-region: drag;   /* Эта область перетаскивает окно */
+  flex-shrink: 0;
+}
+
+/* Кнопки в заголовке НЕ перетаскивают окно */
+.titlebar button,
+.titlebar .btn {
+  -webkit-app-region: no-drag;
+}
+
+.titlebar-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Группа кнопок в заголовке */
+.titlebar-actions {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+/* Базовые стили кнопок */
+button, .btn {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  transition: background 0.15s ease, opacity 0.15s ease;
+}
+
+/* Иконка-кнопка (круглая, прозрачный фон) */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  color: var(--text-secondary);
+  border-radius: var(--radius-sm);
+  font-size: 16px;
+  line-height: 1;
+}
+
+.icon-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.icon-btn.danger:hover {
+  background: rgba(224, 82, 82, 0.15);
+  color: var(--danger);
+}
+
+/* Акцентная кнопка (жёлтая) */
+.btn-accent {
+  background: var(--accent);
+  color: #1a1a1a;
+  padding: 7px 16px;
+  font-weight: 600;
+  border-radius: var(--radius-sm);
+}
+
+.btn-accent:hover {
+  background: var(--accent-hover);
+}
+
+/* Вторичная кнопка (обводка) */
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+  border: 1px solid var(--border);
+  padding: 7px 14px;
+}
+
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Поля ввода */
+input, textarea {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  font-family: inherit;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s ease;
+  width: 100%;
+}
+
+input:focus, textarea:focus {
+  border-color: var(--accent);
+}
+
+input::placeholder, textarea::placeholder {
+  color: var(--text-muted);
+}
+
+textarea {
+  resize: none;
+  overflow-y: auto;
+}
+
+/* Разделитель */
+.separator {
+  height: 1px;
+  background: var(--border);
+  margin: 8px 0;
+}
+
+/* Пустое состояние (заглушка) */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 40px 24px;
+  flex: 1;
+}
+
+.empty-state .empty-icon {
+  font-size: 48px;
+  opacity: 0.4;
+}
+
+.empty-state p {
+  font-size: 13px;
+  line-height: 1.6;
+  max-width: 220px;
+}
