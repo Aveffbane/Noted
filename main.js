@@ -404,7 +404,6 @@ app.whenReady().then(() => {
 
   createTray();
   registerShortcuts();
-  createListWindow();
 
   console.log('Noted запущен. Данные хранятся в:', userDataPath);
 });
