@@ -1,7 +1,7 @@
 {
   "name": "noted",
   "productName": "Noted",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Lightweight notes app that lives in your system tray",
   "main": "main.js",
   "scripts": {
