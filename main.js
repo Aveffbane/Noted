@@ -141,7 +141,7 @@ function createQuickWindow() {
   quickWindow = new BrowserWindow({
     width: 480, height: 430,
     x: Math.floor(width / 2 - 240), y: Math.floor(height / 2 - 215),
-    frame: false, alwaysOnTop: true, resizable: true, skipTaskbar: true,
+    frame: false, alwaysOnTop: true, resizable: true, skipTaskbar: false,
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       contextIsolation: true, nodeIntegration: false,
@@ -157,7 +157,6 @@ function createQuickWindow() {
       if (quickWindow && !quickWindow.isDestroyed()) quickWindow.webContents.send('focus-input');
     }, 100);
   });
-  quickWindow.on('blur', () => { if (quickWindow && !quickWindow.isDestroyed()) quickWindow.hide(); });
   quickWindow.on('closed', () => { quickWindow = null; });
 }
 
